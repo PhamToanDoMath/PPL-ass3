@@ -1,0 +1,5 @@
+
+        Class someClass {
+            Val name:ss;
+        }
+        

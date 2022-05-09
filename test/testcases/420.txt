@@ -1,0 +1,14 @@
+
+        Class normal{
+            sub(a,b:Int){
+                a = a+b;
+            }
+        }
+        Class Program{
+            main(){
+                Var a: Int = 0;
+                Var b : Boolean;
+                normal.sub(1,2);
+            }
+        }
+        

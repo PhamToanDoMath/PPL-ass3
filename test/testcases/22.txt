@@ -1,0 +1,9 @@
+
+        Class abcClass {
+            run(){
+                Var attrB:Int = 100;
+                Var attrA:Float = 30;
+                Val customized:Boolean = False;
+            }
+        }
+        

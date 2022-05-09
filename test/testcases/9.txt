@@ -1,0 +1,5 @@
+
+        Class abcClass {
+            Var Name:Int= 1 + .2e1 +3;
+        }
+        

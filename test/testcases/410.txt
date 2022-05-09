@@ -1,0 +1,12 @@
+
+        Class Normal{
+            Val b: Boolean = 1.72;
+            another_function(a:Int;b:Float){
+            }
+        }
+        Class Program{
+            main(){
+                Var a:Float;
+            }  
+        }
+        

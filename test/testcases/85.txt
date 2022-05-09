@@ -1,0 +1,16 @@
+
+        Class Program{
+            main(){
+                Var r:Random = ThreadLocalRandom.current();
+                Var size,maxElement :Int = 100,100000;
+                Var integers : Array[Int,5] = IntStream.generate()
+                                .limit(size)
+                                .sorted()
+                                .boxed()
+                                .toArray(new);
+                Var shouldBeFound: Int = integers[r.nextInt(size - 1)];
+                Var search: ExponentialSearch = New ExponentialSearch();
+                Var atIndex: Int = search.find(integers, shouldBeFound);
+            }
+        }
+        

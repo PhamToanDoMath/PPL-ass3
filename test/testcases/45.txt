@@ -1,0 +1,10 @@
+
+        Class abcClass:kE29Doew{
+            Run(){
+                If(3){}
+                Else{
+                    obj.Donesk();
+                }
+            }
+        }
+        

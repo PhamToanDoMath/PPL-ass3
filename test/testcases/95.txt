@@ -1,0 +1,9 @@
+
+        Class Program{
+            getSedanCarsOwnedSortedByDate(person:Person) {
+                Return persons.stream().map(Person::$getCars).flatMap(List::$stream)
+                    .filter(Category.SEDAN.equals(car.getCategory()))
+                    .sorted(Comparator.comparing(Car::$getYear)).collect(Collectors.toList());
+              }
+        }
+        

@@ -1,0 +1,9 @@
+
+        Class normal{
+        }
+        Class Program{
+            main(){
+                Var b: String = 1 +. "as";
+            }
+        }
+        

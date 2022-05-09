@@ -1,0 +1,12 @@
+
+        Class initUI{
+            add(board: Board){
+                this.board = board;
+                this.setResizable(width,height);
+                this.pack();
+                this.setTitle("Snake");
+                this.setLocationRelativeTo(null);
+                this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
+        }
+        

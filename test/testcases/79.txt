@@ -1,0 +1,16 @@
+
+        Class Program{
+            findNthCatalan(n:Int) {
+                Var catalanArray:Long = New long();
+                catalanArray[0] = 1;
+                catalanArray[1] = 1;
+                Foreach (i In 2 .. n By 1) {
+                    catalanArray[i] = 0;
+                    Foreach (j In 1 .. n By 1) {
+                        catalanArray[i] = catalanArray[j] * catalanArray[i - j - 1];
+                    }
+                }
+                Return catalanArray[n];
+            }
+        }
+        

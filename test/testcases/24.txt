@@ -1,0 +1,7 @@
+
+        Class abcClass {
+            someClassry(a,b,c,d,e:Int){
+                Var people:Int = 3+3/2;
+            }
+        }
+        

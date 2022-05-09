@@ -1,0 +1,7 @@
+
+        Class abcClass {
+            changeName(){
+                Self.name1.name2[1]=Self.name3.getName(1,"first");
+            }
+        }
+        

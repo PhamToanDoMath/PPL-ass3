@@ -1,0 +1,12 @@
+
+        Class SquarePanel:JPanel{
+            Val $serialVersionUID:Int = 1;
+            SquarePanel(d:Color){
+                Self::$d.det(d);
+            }
+            ChangeColor(d:Color){
+                this.setBackground(d);
+                this.repaint();
+            }
+        }
+        

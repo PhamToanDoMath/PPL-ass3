@@ -1,0 +1,5 @@
+
+        Class abcClass {
+            Var $attrB:Float=100;
+        }
+        

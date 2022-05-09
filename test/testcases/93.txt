@@ -1,0 +1,10 @@
+
+        Class Reactor{
+            udpChannel(port: Int;handler:ChannelHandler){
+                Var channel:CHannel = New NioDatagramChannel(port, handler);
+                channel.bind();
+                channels.add(channel);
+                Return channel;
+          }
+        }
+        

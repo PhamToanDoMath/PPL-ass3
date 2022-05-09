@@ -1,0 +1,13 @@
+
+        Class abcClass:kE29Doew{
+            Foo(){
+                abcClass.foo(1+20,30*4-50.50);
+                If(10)
+                    {}
+                Elseif(20)
+                    {}
+                Elseif(30)
+                    {}
+            }
+        }
+        

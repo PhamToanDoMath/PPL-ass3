@@ -1,0 +1,11 @@
+
+         Class Task {
+            executeWith(callback:Callback) {
+                Self::$execute();
+                Optional.ofNullable(callback).ifPresent(Callback::$call);
+              }
+            execute() {
+                LOGGER.info("Perform some important activity and after call the callback method.");
+            }
+        }
+        

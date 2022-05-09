@@ -1,0 +1,7 @@
+
+        Class abcClass:kE29Doew{
+            createabcClass(){
+                abcClass = New abcClass("reype").b;
+            }
+        }
+        

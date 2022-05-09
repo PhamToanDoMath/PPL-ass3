@@ -1,0 +1,13 @@
+
+        Class Prgram{
+            main(){
+              stop(){
+                reactor.stop();
+                dispatcher.stop();
+                Foreach ( channel In 1 .. 100 ) {
+                  channel.getJavaChannel().close();
+                }
+              }
+          }
+        }
+        

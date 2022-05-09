@@ -1,0 +1,13 @@
+
+        Class abcClass:kE29Doew
+        {
+            Foo()
+            {
+                If(30){}
+                Elseif(40)
+                    {{}}
+                Elseif(50)
+                    {Return Self;}
+            }
+        }
+        

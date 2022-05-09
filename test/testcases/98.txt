@@ -1,0 +1,12 @@
+
+        Class Program{
+            main() {
+                holderThreadSafe = New HolderThreadSafe();
+                another = holderThreadSafe.getHeavy();
+                LOGGER.info("another", another);
+                java8Holder = New Java8Holder();
+                next = java8Holder.getHeavy();
+                LOGGER.info("next", next);
+              }
+        }
+        

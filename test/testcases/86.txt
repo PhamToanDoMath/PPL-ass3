@@ -1,0 +1,8 @@
+
+        Class Program{
+          main() {
+            Var task: ABCParent = New SimpleTask();
+            task.executeWithError(error);
+          }
+        }
+        

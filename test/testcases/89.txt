@@ -1,0 +1,11 @@
+
+        Class Program{
+            main() {
+                Var factory: HeroFactoryImpl = New HeroFactoryImpl(
+                    New ElfMage("cooking"),
+                    New ElfWarlord("cleaning"),
+                    New ElfBeast("protecting")
+                );
+            }
+        }
+        

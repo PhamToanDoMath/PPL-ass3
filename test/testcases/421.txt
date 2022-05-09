@@ -1,0 +1,19 @@
+
+        Class normal{
+            sub(a,b:Int){
+            }
+        }
+        Class Program{
+            
+            main(){
+                Var a: Int = 0;
+                Var b : Boolean;
+                Var c : Float;
+                normal.sub(1,True);
+                Foreach( a In 1 .. 2 By 3){
+                    Break;
+                    Return b;
+                }
+            }
+        }
+        

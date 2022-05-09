@@ -1,0 +1,5 @@
+
+        Class abcClass {
+            Var newWheel:Int = New Wheel();
+        }
+        

@@ -1,0 +1,19 @@
+
+        Class Normal{
+            Var a:Int;
+            function(){
+                Var b,c:Int;
+                b = a;
+            }
+            another_function(a:Int;b:Float){
+                Var c: Float;
+                Var a:Int;
+                b = a + c + 1.01;
+            }
+        }
+        Class Program{
+            main(){
+
+            }  
+        }
+        

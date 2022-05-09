@@ -1,0 +1,10 @@
+
+        Class someClass {
+            mainRussia(a:Int){
+            }
+            main(){
+                Var mainObjectOfTheWeek: Week = workd::$obejct(a+6.4243e91,b);
+                Var sc:Scanner = New Scanner(Scanner.in);
+            }
+        }
+        

@@ -1,0 +1,5 @@
+
+        Class abcClass:kE29Doew{
+            Var $stock:Array[Int,3] = Array(1,1,1);
+        }
+        

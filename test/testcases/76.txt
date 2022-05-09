@@ -1,0 +1,14 @@
+
+        Class Send:Exception {
+            main(){
+                oos.writeObject(collection);
+                oos.flush();
+                logger.info("please speak a word");
+            }
+            printLog(){
+                e.printStackTrace();
+                back.backup(bakFileName, collection);
+                logger.error("something happens");
+            }
+        }
+        

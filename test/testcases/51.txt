@@ -1,0 +1,17 @@
+
+        Class DataOfSquare {
+            Val c: Array[Int,5] = New ArrayList();
+            Val color: Int;
+            Val square: SquarePanel;
+            DataOfSquare(col: Int){
+                C.add(Color.darkGray);
+                C.add(Color.BLUE);
+                C.add(Color.white);
+                color=col;
+                square = New SquarePanel(C.get(color));
+            }
+            lightMeUp(c:Int){
+                square.ChangeColor(C.get(c));
+            }
+        }
+        

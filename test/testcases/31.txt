@@ -1,0 +1,7 @@
+
+        Class someClass {
+            foo(){
+                Var someClassStock:Array[Array[Int,5],5];
+            }
+        }
+        

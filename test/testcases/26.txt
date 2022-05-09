@@ -1,0 +1,7 @@
+
+        Class abcClass {
+            $updateStock(){
+                stock[1][3]= stock[1][3] + 1;
+            }
+        }
+        

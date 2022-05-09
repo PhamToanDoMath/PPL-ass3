@@ -1,0 +1,6 @@
+
+        Class abcClass {
+            Var attrB:Int;
+            Var haveAbs:Boolean;
+        }
+        

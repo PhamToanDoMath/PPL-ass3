@@ -1,0 +1,5 @@
+
+        Class someClass {
+            Var numOfWheels:Int=2+2;
+        }
+        

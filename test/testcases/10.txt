@@ -1,0 +1,5 @@
+
+        Class someClass {
+            Var attrB:Int = !abcClassSpeed + (3* -4);
+        }
+        

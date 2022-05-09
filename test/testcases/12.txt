@@ -1,0 +1,5 @@
+
+        Class someClass {
+            Val brand:String=specs[1][1];
+        }
+        

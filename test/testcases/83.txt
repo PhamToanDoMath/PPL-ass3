@@ -1,0 +1,13 @@
+
+        Class abcClass {
+            main(){
+                registerLister(registry, KubernetesInformer: KubernetesInformer) {
+                        listerBean = BeanDefinitionBuilder.rootBeanDefinition(Lister.class).getBeanDefinition();
+                        listerBean.setInstanceSupplier(api.lister(kubernetesInformer.apiTypeClass()));
+                        listerType = ResolvableType.forClassWithGenerics(Lister.class, kubernetesInformer.apiTypeClass());
+                        listerBean.setTargetType(listerType);
+                        registry.registerBeanDefinition(listerType.toString(), listerBean);
+                  }
+            }
+        }
+        

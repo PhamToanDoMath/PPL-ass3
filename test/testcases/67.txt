@@ -1,0 +1,7 @@
+
+        Class A {
+            foo(){
+                Single.name.first = "Davis";
+            }
+        }
+        

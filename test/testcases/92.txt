@@ -1,0 +1,12 @@
+
+        Class Reactor{
+            main(){
+                tcpChannel(port:Int;handler:ChannelHandler){
+                    Var channel: Channel = New NioServerSocketChannel(port, handler);
+                    channel.bind();
+                    channels.add(channel);
+                    Return channel;
+              }
+            }  
+        }
+        

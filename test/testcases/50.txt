@@ -1,0 +1,9 @@
+
+        Class abcClass {
+            $countabcClass() {
+                If ((1+1) ){
+                    Var x,y:Boolean = False, True;
+                }
+            }
+        }
+        

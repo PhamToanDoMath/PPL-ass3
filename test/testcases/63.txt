@@ -1,0 +1,9 @@
+
+        Class Single {
+            dubbed() {
+                If(a){
+                    anc = 5;
+                }
+            }
+        }
+        

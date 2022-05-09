@@ -1,0 +1,5 @@
+
+        Class Stock {
+            Var abcClassStock:Array[Int,5];
+        }
+        

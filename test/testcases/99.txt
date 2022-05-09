@@ -1,0 +1,10 @@
+
+        Class Program{
+            createAndCacheHeavy() {
+              heavyInstance = New Heavy();
+              get() {
+                Return heavyInstance;
+              }
+          }
+        }
+        

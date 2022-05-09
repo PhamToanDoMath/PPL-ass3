@@ -1,0 +1,7 @@
+
+        Class abcClass {
+            run(){
+                Var speed:Int;
+            }
+        }
+        

@@ -1,0 +1,10 @@
+
+        Class Program {
+            main(){
+            }
+        }
+        Class NotAProgram {
+            main(a:Int;b:Args){
+            }
+        }
+        

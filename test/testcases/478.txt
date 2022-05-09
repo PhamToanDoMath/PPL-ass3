@@ -1,0 +1,23 @@
+     
+                        Class A {
+                           Var a:Int = 1;
+                           foo(){
+                                Return 1;
+                           }                      
+                        }                        
+                        Class B{ 
+                            Var b:A = New A();
+                            foo(){
+                                Return New A();
+                            }
+                        }
+                        Class C{
+                            foo(){
+                                Var c:B = New B();
+                                Var e:Int = c.b.a;
+                                e = c.b.foo();
+                                e = c.foo().a;
+                                e = c.foo().foo();
+                                Var f:Int = c.foo();
+                            }
+                        }

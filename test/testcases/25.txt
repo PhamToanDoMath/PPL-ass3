@@ -1,0 +1,8 @@
+
+        Class someClass {
+            $updateCount(){
+                Var count:Int = count;
+                count=1;
+            }
+        }
+        

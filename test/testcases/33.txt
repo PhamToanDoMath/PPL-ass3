@@ -1,0 +1,7 @@
+
+        Class someClass:kE29Doew{
+            createsomeClass(){
+                someClass = New someClass("huyndai").model.init();
+            }
+        }
+        

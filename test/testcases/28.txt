@@ -1,0 +1,7 @@
+
+        Class abcClass {
+            changeName(){
+                Self.name1.name2="ei29So";
+            }
+        }
+        

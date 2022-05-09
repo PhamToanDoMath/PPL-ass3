@@ -1,0 +1,11 @@
+
+        Class Normal{
+            another_function(a:Int){
+                Var a:Float;
+            }
+        }
+        Class Program{
+            main(){
+            }  
+        }
+        

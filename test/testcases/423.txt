@@ -1,0 +1,13 @@
+
+        Class normal{
+            sub(a,b:Int){
+                Return a-b;
+            }
+        }
+        Class Program{
+            main(){
+                Var a: Float;
+                a = 1.0 + normal.sub(1,1);
+            }
+        }
+        

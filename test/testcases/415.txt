@@ -1,0 +1,10 @@
+
+        Class normal{
+            Var a: Int = -5.0;
+        }
+        Class Program{
+            main(){
+                Var b: Boolean = 1 == 2;
+            }
+        }
+        

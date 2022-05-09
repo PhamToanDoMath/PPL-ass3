@@ -1,0 +1,13 @@
+
+        Class Normal{
+
+        }
+        Class Normal{
+
+        }
+        Class Program{
+            main(){
+
+            }
+        }
+        

@@ -1,0 +1,19 @@
+
+        Class Game: JFrame
+            {
+              Val Height:Int = 30;
+              Val Width:Int = 30;
+              Val Scale:Float = 10;
+              main(args: GFrame) {
+                Val $gameBoard:SnakeBoard = New SnakeDataModel();
+                Val view: View = New View(gameBoard);
+                object.add(view);
+                Val $controller:Controller = New Controller(gameBoard);
+                object.addKeyListener(controller);
+                object.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                a.setVisible(true);
+                this.setSize(Width * Scale + Scale / 2, Height * Scale + Scale / 2);
+                a = controller.start;
+              }
+            }
+        

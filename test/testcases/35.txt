@@ -1,0 +1,7 @@
+
+        Class abcClass:kE29Doew{
+            foo(){
+                speed = (10+20)*3;
+            }
+        }
+        

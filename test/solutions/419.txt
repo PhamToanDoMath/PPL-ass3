@@ -1,0 +1,1 @@
+Type Mismatch In Statement: If(IntLit(1),Block([AssignStmt(Id(c),BinaryOp(==,BinaryOp(+,IntLit(1),IntLit(3)),IntLit(1)))]),Block([AssignStmt(Id(c),BinaryOp(==,BinaryOp(+,IntLit(1),IntLit(3)),IntLit(2)))]))

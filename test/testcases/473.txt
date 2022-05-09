@@ -1,0 +1,13 @@
+     
+                        Class E {
+                           $func() {                        
+                           } 
+                           Constructor(a:Int){
+                           }                       
+                        }                        
+                        Class Test{ 
+                            cak(){                     
+                                E::$func();   
+                                E::$foo();                             
+                            }
+                        }
