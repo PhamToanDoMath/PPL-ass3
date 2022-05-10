@@ -1,8 +1,0 @@
-
-        Class That {
-        }
-        Class That : This {
-        }
-        Class Those : That {
-        }
-        

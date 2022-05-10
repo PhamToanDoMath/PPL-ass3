@@ -1,7 +1,0 @@
-
-        Class Rectangle {
-            getArea(){
-                Return;
-            }
-        }
-        

@@ -1,6 +1,0 @@
-
-        Class Rectangle {
-            $getNumOfRectangle(size : Float; dotNum, lineNum : Int; type : Rectangle) {
-            }
-        }
-        

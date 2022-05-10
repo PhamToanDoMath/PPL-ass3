@@ -1,5 +1,0 @@
-
-        Class abcClass {
-            Var numOfWheels:Int=2;
-        }
-        

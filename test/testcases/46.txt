@@ -1,9 +1,0 @@
-
-        Class abcClass:kE29Doew{
-            Run(){
-                If(10){}
-                If(20){}Else{}
-                If(30){}Elseif(40){}Else{stop=1;}
-            }
-        }
-        

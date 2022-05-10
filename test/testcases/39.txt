@@ -1,8 +1,0 @@
-
-        Class abcClass:kE29Doew{
-            Var speed1, speed2, speed3:Int;
-            Foo(){
-                Var speed1, speed2, speed3:Int;
-            }
-        }
-        

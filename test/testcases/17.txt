@@ -1,5 +1,0 @@
-
-        Class abcClass {
-            run(){}
-        }
-        

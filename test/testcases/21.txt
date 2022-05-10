@@ -1,7 +1,0 @@
-
-        Class abcClass {
-            fillGas(){
-                Var Amount:Float = 10;
-            }
-        }
-        
