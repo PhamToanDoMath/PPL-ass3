@@ -1,19 +1,15 @@
 
         Class normal{
+            Val a,b: Float = 3,4;
+            Val c,d: Int = 4 ,5;
             sub(a,b:Int){
+                Return a- b ;
             }
         }
         Class Program{
-            
             main(){
-                Var a: Int = 0;
-                Var b : Boolean;
-                Var c : Float;
-                normal.sub(1,True);
-                Foreach( a In 1 .. 2 By 3){
-                    Break;
-                    Return b;
-                }
+                Val a: Int = 1;
+                a = normal.sub(1,1);
             }
         }
         

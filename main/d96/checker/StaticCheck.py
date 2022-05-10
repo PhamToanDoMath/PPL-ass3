@@ -2,7 +2,9 @@
 """
  * @author nhphung
 """
+from ast import Global
 from re import I
+from attr import attr, attrib
 
 from jinja2 import pass_eval_context
 from AST import * 
@@ -146,16 +148,16 @@ class Checker:
 
 
 class Symbol:
-    def __init__(self, name, mtype, value=None, kind=Class(), isGlobal=False, parent=None):
+    def __init__(self, name, mtype, value=None, kind=Class(), isGlobal=False):
         self.name = name
         self.mtype = mtype
         self.value = value
         self.kind = kind
         self.isGlobal = isGlobal
-        self.parent = parent
+        self.child = None
 
     def __str__(self):
-        return 'Symbol(' + self.name + ',' + str(self.mtype) + ',' + str(self.kind) + ')'
+        return 'Symbol(' + self.name + ',' + str(self.mtype) + ',' + str(self.kind) + ',' + ')'
 
 
     def setGlobal(self):
@@ -210,14 +212,43 @@ class Symbol:
     def fromClassDecl(decl):
         return Symbol(decl.classname.name,MType([],ClassType(decl.classname)),kind=Class())
 
+class GlobalStack:
+    stack = []
+
+    def isEmpty():
+        return GlobalStack.stack.isEmpty()
+    def pop():
+        return GlobalStack.stack.pop()
+
+    def push(symbols):
+        print('new symbol pushed to stack')
+        GlobalStack.stack.append(symbols)
+
+    def log():
+        print('Stack trace:')
+        [print(x) for x in GlobalStack.stack]
+        print('End stack trace:')
 
 class StaticChecker(BaseVisitor):
+
+    @staticmethod
+    def fromMethodDecl(decl):
+        paramType = [x.varType for x in decl.param]
+        return Symbol(decl.name.name, MType(paramType, VoidType()), kind=Method())
+
+    @staticmethod
+    def fromAttributeDecl(decl):
+        kind = Attribute()
+        if type(decl) is VarDecl:
+            return Symbol(decl.variable.name, decl.varType, kind=kind)
+        else:
+            return Symbol(decl.constant.name, decl.constType,kind=kind)
 
     global_envi = [
     # Symbol("getInt",MType([],IntType())),
     # Symbol("putIntLn",MType([IntType()],VoidType()))
     ]
-    
+
     def __init__(self,ast):
         self.ast = ast
 
@@ -225,43 +256,58 @@ class StaticChecker(BaseVisitor):
         return self.visit(self.ast,StaticChecker.global_envi)
 
     def visitProgram(self,ast:Program, scope):
+
+        ## Pop all element from GlobalStack
+        while len(GlobalStack.stack) != 0 :
+            GlobalStack.stack.pop()
+        
         symbols= [Symbol.fromClassDecl(x) for x in ast.decl]
         scope = Checker.checkRedeclared(scope,symbols)
         for x in ast.decl:
-            scope = self.visit(x,scope) 
+            self.visit(x,scope) 
         return []
     
     ################ CLASS DECLARATION ###################
     def visitClassDecl(self,ast:ClassDecl, scope):
+        
         Scope.start('ClassDecl')
         Scope.log(scope)
         
-        # symbols = [Symbol.fromDecl(x) for x in ast.memlist]
-
+        symbols = [Symbol.fromDecl(x) for x in ast.memlist]
         
+        ## Check redeclared
+        newScope = Checker.checkRedeclared([],symbols)
+        scope = scope + newScope
         # attributes = [] 
         # for x in ast.memlist:
         #     att, scope = self.visit(x,scope)
         #     attributes.append(att)
 
         attributes = [self.visit(x,scope) for x in ast.memlist]
+        # print('Attribute', attributes[0].name)
         ## Add parent pointer to each attributes in class declaration
-        for x in attributes:
-            x.parent = Symbol(ast.classname.name,MType([],ClassType(ast.classname)),kind=Class())
+        # for x in attributes:
+        #     x.parent = Symbol(ast.classname.name,MType([],ClassType(ast.classname)),kind=Class())
         
-        ## Check redeclared
-        scope = Checker.checkRedeclared(scope,attributes)
-
-
         ## Entry point exception
         if ast.classname.name == 'Program':
             f = Checker.utils.lookup(('main',type(Method())), attributes, lambda x: x.toTuple())
             if f is None or len(f.mtype.partype) != 0:
                 raise NoEntryPoint()
         Scope.end()
+
+        ## Add nested symbol to scoped
+        classSymbol = Symbol(ast.classname.name,MType([],ClassType(ast.classname)),kind=Class())
+        classSymbol.child = attributes
+        GlobalStack.push(classSymbol)
+
+        # GlobalStack.log()
+
         return scope
 
     def visitMethodDecl(self,ast:MethodDecl, scope):
+        # methodSymbol = Symbol.fromMethodDecl(ast)
+
         Scope.start('Method Decl')
         Scope.log(scope)
         #Get params symbol and recheck for redeclared
@@ -278,11 +324,13 @@ class StaticChecker(BaseVisitor):
         listNewSymbols = listParams
         newScope = Checker.checkRedeclared([],listNewSymbols)
 
-        # f = Checker.utils.lookup(ast.name,scope,lambda x: x.name)
-        # f.mtype.rettype = retType 
+        f = Checker.utils.lookup(ast.name.name,scope, lambda x: x.name)
+        f.mtype.rettype = retType
+
         listParams = [x.mtype for x in listParams ]
         print(ast.name.name,'returning:',Symbol(ast.name.name, MType(listParams,retType),kind=Method()))
         Scope.end()
+
         return  Symbol(ast.name.name, MType(listParams,retType),kind=Method())
         # return 
         # return Symbol.fromMethodDecl(ast)
@@ -293,7 +341,9 @@ class StaticChecker(BaseVisitor):
         #check type before assignment
         ## Khai typemismatch bi thieu AttributeDecl
         self.visit(ast.decl, scope)
-        return Symbol.fromAttributeDecl(ast.decl)
+        attrSymbol = Symbol.fromAttributeDecl(ast.decl)
+
+        return attrSymbol
 
     def visitVarDecl(self, ast:VarDecl, scope):
         #check type before assignment
@@ -369,22 +419,24 @@ class StaticChecker(BaseVisitor):
         # Return None Type
         Scope.start("CallStmt")
         Scope.log(scope)
-        objType = self.visit(ast.obj,scope)
-        
+        objType, symbol = self.visit(ast.obj,scope)
+
+        ## If obj is an ID
+        if symbol is not None:
+            ## Look up in the GlobalStack to find the correct nested array
+            obj = Checker.utils.lookup(symbol.name, GlobalStack.stack, lambda x: x.name)
+            childList = obj.child if obj is not None else None
+            # print('childList',[str(x) for x in childList])
+            f = Checker.checkUndeclared(childList, ast.method.name, kind=Method()) if childList is not None else None
+
         paramsRetType = [self.visit(x,scope)[0] for x in ast.param]
         
-        ## Check undeclared with obj and method
-        # Checker.checkUndeclared(scope, objType, kind=Identifier())
-        f = Checker.checkUndeclared(scope, ast.method.name, kind=Method())
-        # print('objType',methodType)
-        
-        # Can phan check compatible giua paramType va paramMethodType
-        # f = Checker.utils.lookup(ast.method.name,scope,lambda x: x.name)
         print('Call method type: ',f.mtype.rettype)
         if not all([Checker.matchType(a,b) for a,b in zip(f.mtype.partype,paramsRetType)]) \
             or len(f.mtype.partype) != len(paramsRetType) \
             or type(f.mtype.rettype) is not VoidType :
             raise TypeMismatchInStatement(ast)
+            
         Scope.end()
         return
     
@@ -439,9 +491,6 @@ class StaticChecker(BaseVisitor):
         print(ast.name,'return type:',symbol)
         Scope.end()
         return symbol.mtype, symbol
-        # symbol = Checker.utils.lookup(Symbol.cmp(ast), scope, Symbol.cmp)
-        # if symbol is not None:
-            # return symbol.mtype
 
 
     ############ EXPRESSION PART ##############
@@ -496,17 +545,17 @@ class StaticChecker(BaseVisitor):
         Scope.start("CallExpr")
         Scope.log(scope)
         
-        mType, objSymbol = self.visit(ast.obj,scope)
-        self.visit(ast.method,scope)
-        
+        objType, symbol = self.visit(ast.obj,scope)
+
+        ## If obj is an ID
+        if symbol is not None:
+            ## Look up in the GlobalStack to find the correct nested array
+            obj = Checker.utils.lookup(symbol.name, GlobalStack.stack, lambda x: x.name)
+            childList = obj.child if obj is not None else None
+            # print('childList',[str(x) for x in childList])
+            f = Checker.checkUndeclared(childList, ast.method.name, kind=Method()) if childList is not None else None
+
         paramsRetType = [self.visit(x,scope)[0] for x in ast.param]
-        
-        ## Check undeclared with obj and method
-        if type(objSymbol) is Symbol:
-            Checker.checkUndeclared(scope, objSymbol.name, kind=Identifier())
-        
-        f = Checker.checkUndeclared(scope, ast.method.name, kind=Method())
-        # f = Checker.utils.lookup(ast.method.name,scope,lambda x: x.name)            
 
         print('Call expr type: ',f.mtype.rettype)
         if not all([Checker.matchType(a,b) for a,b in zip(f.mtype.partype,paramsRetType)]) \

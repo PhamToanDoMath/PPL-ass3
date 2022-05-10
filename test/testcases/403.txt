@@ -2,7 +2,7 @@
         Class Normal{
             Var a:Int;
             function(){
-                Var b,c:Int;
+                Var b,c: Int;
                 b = a;
             }
             another_function(a:Int;b:Float){

@@ -1,5 +1,7 @@
 
         Class normal{
+            Val a,b: Float = 3,4;
+            Val c,d: Int = 4 ,5;
             sub(a,b:Float){
                 Return a-b;
             }
@@ -7,7 +9,7 @@
         Class Program{
             main(){
                 Var a: Float;
-                a = True + normal.sub(1,1);
+                a = 1.0 + normal.sub(1,1);
             }
         }
         
