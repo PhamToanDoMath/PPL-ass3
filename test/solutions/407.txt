@@ -1,1 +1,0 @@
-Type Mismatch In Statement: VarDecl(Id(b),BoolType,FloatLit(1.72))

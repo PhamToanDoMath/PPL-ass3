@@ -7,4 +7,3 @@ class Utils:
                 # print('Accept')
                 return x
         return None
-

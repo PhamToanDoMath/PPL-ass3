@@ -185,7 +185,7 @@ class CheckerSuite(unittest.TestCase):
     #         }  
     #     }
     #     """
-    #     expect = "Type Mismatch In Statement: AttributeDecl(ConstDecl(Id(b),BoolType,FloatLit(1.72)))"
+    #     expect = "Type Mismatch In Constant Declaration: AttributeDecl(ConstDecl(Id(b),BoolType,FloatLit(1.72)))"
     #     self.assertTrue(TestChecker.test(input,expect,410))
     
     # def test_11(self):
@@ -320,92 +320,325 @@ class CheckerSuite(unittest.TestCase):
     #     expect = "Type Mismatch In Statement: If(IntLit(1),Block([AssignStmt(Id(c),BinaryOp(==,BinaryOp(+,IntLit(1),IntLit(3)),IntLit(1)))]),Block([AssignStmt(Id(c),BinaryOp(==,BinaryOp(+,IntLit(1),IntLit(3)),IntLit(2)))]))"
     #     self.assertTrue(TestChecker.test(input,expect,419))
 
-    def test_20(self):
+    # def test_20(self):
+    #     input = """
+    #     Class normal{
+    #         sub(a,b:Int){
+    #             a = a+b;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var a: Int = 0;
+    #             Var b : Boolean;
+    #             normal.sub(1,2);
+    #         }
+    #     }
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,420))
+
+    # def test_21(self):
+    #     input = """
+    #     Class normal{
+    #         Val a,b: Float = 3,4;
+    #         Val c,d: Int = 4 ,5;
+    #         sub(a,b:Int){
+    #             Return a- b ;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Val a: Int = 1;
+    #             a = normal.sub(1,1);
+    #         }
+    #     }
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,421))
+
+    # def test_22(self):
+    #     input = """
+    #     Class normal{
+    #         sub(a,b:Int){
+    #             Return a-b;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             normal.sub(1,1);
+    #         }
+    #     }
+    #     """
+    #     expect = "Type Mismatch In Statement: Call(Id(normal),Id(sub),[IntLit(1),IntLit(1)])"
+    #     self.assertTrue(TestChecker.test(input,expect,422))
+
+    # def test_23(self):
+    #     input = """
+    #     Class normal{
+    #         sub(a,b:Int){
+    #             Return a-b;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var a: Float;
+    #             a = 1.0 + normal.sub(1,1);
+    #         }
+    #     }
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,423))
+
+    # def test_24(self):
+    #     input = """
+    #     Class normal{
+    #         Val a,b: Float = 3,4;
+    #         Val c,d: Int = 4 ,5;
+    #         sub(a,b:Float){
+    #             Return a-b;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var a: Float;
+    #             a = 1.0 + normal.sub(1,1);
+    #         }
+    #     }
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,424))
+
+    # def test_25(self):
+    #     input = """
+    #     Class normal{
+    #         Val a,b: Float = 3,4;
+    #         Val c,d: Int = 4 ,5;
+    #         sub(a,b:Float){
+    #             Return a-b;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var a: Float;
+    #             a = 1.0 + normal.sub1(1,1);
+    #         }
+    #     }
+    #     """
+    #     expect = "Undeclared Method: sub1"
+    #     self.assertTrue(TestChecker.test(input,expect,425))
+
+    # def test_26(self):
+    #     input = """
+    #     Class normal{
+    #         Val a,b: Float = 3,4;
+    #         Val c,d: Int = 4 ,5;
+    #         sub(a,b:Float){
+    #             Return a-b;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var a: Float;
+    #             a = 1.0 + normal1.sub1(1,1);
+    #         }
+    #     }
+    #     """
+    #     expect = "Undeclared Identifier: normal1"
+    #     self.assertTrue(TestChecker.test(input,expect,426))
+
+    # def test_27(self):
+    #     input = """
+    #     Class normal{
+    #         Val a,b: Float = 3,4;
+    #         Val c,d: Int = 4 ,5;
+    #         sub(a,b:Float){
+    #             a = a-b;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var a: Float;
+    #             normal.sub1(1,1);
+    #         }
+    #     }
+    #     """
+    #     expect = "Undeclared Method: sub1"
+    #     self.assertTrue(TestChecker.test(input,expect,427))
+
+    # def test_28(self):
+    #     input = """
+    #     Class normal{
+    #         Val a,b: Float = 3,4;
+    #         Val c,d: Int = 4 ,5;
+    #         sub(a,b:Float){
+    #             Return a-b;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var a: Float;
+    #             a = 1.0 + normal1.sub1(1,1);
+    #         }
+    #     }
+    #     """
+    #     expect = "Undeclared Identifier: normal1"
+    #     self.assertTrue(TestChecker.test(input,expect,428))
+
+    # def test_29(self):
+    #     input = """
+    #     Class normal{
+    #         Val a,b: Int = 3,4;
+    #         Val $c,d: Int = 4,5;
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var a: Boolean;
+    #             Var res: Float;
+    #             res = 1.0 + normal.a;
+    #         }
+    #     }
+    #     """
+    #     expect = "Illegal Member Access: FieldAccess(Id(normal),Id(a))"
+    #     self.assertTrue(TestChecker.test(input,expect,429))
+
+    # def test_30(self):
+    #     input = """
+    #     Class normal{
+    #         Val a,$b: Int = 3,4;
+    #         Val c,d: Int = 4,5;
+    #         main(){
+    #             a= a+$b+c;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var res: Float;
+    #             res = 1.0 + normal::$b;
+    #         }
+    #     }
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,430))
+
+    # def test_31(self):
+    #     input = """
+    #     Class normal{
+    #         Val a,b,$b: Int = 3,4,5;
+    #         Val c,d: Int = 4,5;
+    #         main(){
+    #             a= a+$b+c;
+    #         }
+    #     }
+    #     Class Program{
+    #         main(){
+    #             Var res: Float;
+    #             res = normal::$b;
+    #             res = 1.0 + normal.b;
+    #         }
+    #     }
+    #     """
+    #     expect = "Illegal Member Access: FieldAccess(Id(normal),Id(b))"
+    #     self.assertTrue(TestChecker.test(input,expect,431))
+
+    # def test_32(self):
+    #     input = """
+    #     Class Program{
+    #         main(){
+    #             Var a: Array[Int,5] = Array(1,2,3,4,5);                
+    #         }
+    #     }
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,432))
+
+    # def test_33(self):
+    #     input = """
+    #     Class Program{
+    #         main(){
+    #             Var a: Array[Int,5] = Array(1,2,True,4,5);                
+    #         }
+    #     }
+    #     """
+    #     expect = "Illegal Array Literal: [IntLit(1),IntLit(2),BooleanLit(True),IntLit(4),IntLit(5)]"
+    #     self.assertTrue(TestChecker.test(input,expect,433))
+    
+    # def test_33(self):
+    #     input = """
+    #     Class Program{
+    #         main(){
+    #             Var a: Array[Int,5] = Array(1,2,3,4,5);
+    #             a[1][2][3] = 2;                
+    #         }
+    #     }
+    #     """
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,433))
+
+    # def test_34(self):
+    #     input = """
+    #     Class Program{
+    #         main(){
+    #             Var a: Array[Int,5] = Array(1,2,3,4,5);
+    #             a[1][2][3.0] = 2;                
+    #         }
+    #     }
+    #     """
+    #     expect = "Type Mismatch In Expression: ArrayCell(Id(a),[IntLit(1),IntLit(2),FloatLit(3.0)])"
+    #     self.assertTrue(TestChecker.test(input,expect,434))
+
+    def test_35(self):
         input = """
-        Class normal{
-            sub(a,b:Int){
-                a = a+b;
+        Class Program{
+            main(){
+                Var a: Array[Int,5] = Array(1,2,3,4,5);
+                Var b: Array[Int,4] = Array(1,2,3,4);
+                a = b;                
             }
+        }
+        """
+        expect = "Type Mismatch In Statement: AssignStmt(ArrayCell(Id(a),[IntLit(1),IntLit(2),IntLit(3)]),FloatLit(2.0))"
+        self.assertTrue(TestChecker.test(input,expect,435))
+
+    def test_36(self):
+        input = """
+        Class A{
+
         }
         Class Program{
             main(){
-                Var a: Int = 0;
-                Var b : Boolean;
-                normal.sub(1,2);
+                Var a: A;
             }
         }
         """
         expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,420))
+        self.assertTrue(TestChecker.test(input,expect,436))
 
-    def test_21(self):
+    def test_37(self):
         input = """
-        Class normal{
-            Val a,b: Float = 3,4;
-            Val c,d: Int = 4 ,5;
-            sub(a,b:Int){
-                Return a- b ;
+        Class A{
+            Constructor(a,b:Int){
+                Return a+b;
             }
         }
         Class Program{
             main(){
-                Val a: Int = 1;
-                a = normal.sub(1,1);
+                Var a: A = New A(1,2);
             }
         }
         """
         expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,421))
+        self.assertTrue(TestChecker.test(input,expect,437))
 
-    def test_22(self):
+    def test_38(self):
         input = """
-        Class normal{
-            sub(a,b:Int){
-                Return a-b;
-            }
+        Class A{
         }
         Class Program{
             main(){
-                normal.sub(1,1);
+                Var a: A = New A(1,2);
             }
         }
         """
-        expect = "Type Mismatch In Statement: Call(Id(normal),Id(sub),[IntLit(1),IntLit(1)])"
-        self.assertTrue(TestChecker.test(input,expect,422))
-
-    def test_23(self):
-        input = """
-        Class normal{
-            sub(a,b:Int){
-                Return a-b;
-            }
-        }
-        Class Program{
-            main(){
-                Var a: Float;
-                a = 1.0 + normal.sub(1,1);
-            }
-        }
-        """
-        expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,423))
-
-    def test_24(self):
-        input = """
-        Class normal{
-            Val a,b: Float = 3,4;
-            Val c,d: Int = 4 ,5;
-            sub(a,b:Float){
-                Return a-b;
-            }
-        }
-        Class Program{
-            main(){
-                Var a: Float;
-                a = 1.0 + normal.sub(1,1);
-            }
-        }
-        """
-        expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,424))
-
+        expect = "Type Mismatch In Expression: NewExpr(Id(A),[IntLit(1),IntLit(2)])"
+        self.assertTrue(TestChecker.test(input,expect,438))
