@@ -1,7 +1,0 @@
-
-        Class someClass {
-            fang(){
-                Var mainStankOfTheWeek:object = workd::$obejct(a+6.4243e91,b);
-            }
-        }
-        

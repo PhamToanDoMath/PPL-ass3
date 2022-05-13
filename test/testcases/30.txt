@@ -1,7 +1,0 @@
-
-        Class abcClass {
-            foo(){
-                Var speed:Speed = Self.s.getSpeed(10,20+30) + 20;
-            }
-        }
-        

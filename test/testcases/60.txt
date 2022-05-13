@@ -1,9 +1,0 @@
-
-        Class Rectangle {
-            Val $numOfRectangle: Int = 0;
-
-            $getNumOfRectangle() {
-
-            }
-        }
-        

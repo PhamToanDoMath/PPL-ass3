@@ -137,10 +137,9 @@ class TestChecker:
         TestChecker.check(SOL_DIR,asttree,num)
         dest = open(os.path.join(SOL_DIR, str(num) + ".txt"),"r")        
         line = dest.read()
-        print('\n================== RESULT ' + str(num) + ' ========================')
-        print(line)
-        print('================== END RESULT ====================\n\n\n')
-
+        # print('\n================== RESULT ' + str(num) + ' ========================')
+        # print(line)
+        # print('================== END RESULT ====================\n\n\n')
         return line == expect
 
     @staticmethod

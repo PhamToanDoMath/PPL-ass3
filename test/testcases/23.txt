@@ -1,8 +1,0 @@
-
-        Class abcClass {
-            Var $count:Int = 1;
-            stop(){
-                Var status:Int = 0;
-            }
-        }
-        

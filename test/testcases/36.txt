@@ -1,9 +1,0 @@
-
-        Class someClass:kE29Doew{
-            recur(){
-                Return Self.recur();
-            }
-            Constructor (speed,brand:Name){}
-            Destructor (){}
-        }
-        

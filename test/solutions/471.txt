@@ -1,1 +1,0 @@
-Type Mismatch In Statement: VarDecl(Id(e),ClassType(Id(E)),NewExpr(Id(E),[IntLit(1)]))

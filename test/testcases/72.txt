@@ -1,8 +1,0 @@
-
-        Class SuperfastCar:VinFast{
-            superFastMode(){
-                Val speed2,speed3:Int = 10,30;
-                Var d:SomeClass;
-            }
-        }
-        

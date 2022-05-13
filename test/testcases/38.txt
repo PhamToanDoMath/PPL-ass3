@@ -1,6 +1,0 @@
-
-        Class abcClass:kE29Doew{
-            Var maxPing,$attrB:Int = 0,100;
-            Val $count,boo:Boolean = True, Null;
-        }
-        

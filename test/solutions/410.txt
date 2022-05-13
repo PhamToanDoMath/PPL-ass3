@@ -1,1 +1,0 @@
-Type Mismatch In Constant Declaration: ConstDecl(Id(b),BoolType,FloatLit(1.72))

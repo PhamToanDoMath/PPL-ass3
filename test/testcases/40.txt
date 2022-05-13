@@ -1,8 +1,0 @@
-
-        Class someClass:kE29Doew{
-            Foo(){
-                Val speed1, speed1, speed1:Int = 10,20,30;
-                Var d:Boolean = True;
-            }
-        }
-        

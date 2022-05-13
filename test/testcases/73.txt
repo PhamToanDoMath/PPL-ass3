@@ -1,5 +1,0 @@
-
-        Class abcClass {
-            Val array:Array[Array[Int,5],5] = New Wheel();
-        }
-        

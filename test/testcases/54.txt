@@ -1,6 +1,0 @@
-
-        Class Rectangle{
-        foo(){
-        }
-        }
-        

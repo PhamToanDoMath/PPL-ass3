@@ -1,9 +1,0 @@
-
-        Class Program{
-            main(){
-                Var a,c:Int;
-                Var b:Float = 1;
-                b = 1 + 2 + c + a;
-            }  
-        }
-        

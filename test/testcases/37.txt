@@ -1,5 +1,0 @@
-
-        Class abcClass:kE29Doew{
-            Var speed,$good:Int;
-        }
-        

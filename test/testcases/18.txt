@@ -1,5 +1,0 @@
-
-        Class abcClass {
-            run(min_speed,max_speed:Int;avg_speed:Float){}
-        }
-        
