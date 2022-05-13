@@ -111,7 +111,7 @@ class ASTGeneration(D96Visitor):
                 res = If(exp,elseThenStmt,res)
             return If(expIf,thenStmt,res)
         else:
-            elseStmt = self.visit(ctx.elseBody()) if ctx.elseBody() else []
+            elseStmt = self.visit(ctx.elseBody()) if ctx.elseBody() else None
             return If(expIf,thenStmt,elseStmt)
 
     def visitElseBody(self,ctx:D96Parser.ElseBodyContext):
